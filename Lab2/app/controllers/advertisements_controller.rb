@@ -1,17 +1,16 @@
 class AdvertisementsController < ApplicationController
   def index
-    advertisements = Advertisement.includes(:city).eager_load(:city, :car_model)
+    @gearboxes = Gearbox.all
+    advertisements = Advertisement.joins(:gearbox)
 
-    unless request.params[:city].blank?
-      advertisements.where!(:city_id => request.params[:city])
+    @search = request.params[:search]
+    unless @search.blank?
+      advertisements.where!("advertisements.name like ?", "%#{@search}%")
     end
 
-    unless request.params[:brand].blank?
-      advertisements = advertisements.where!('car_models.brand_id' => request.params[:brand])
-    end
-
-    unless request.params[:model].blank?
-      advertisements = advertisements.where(:car_model_id => request.params[:model])
+    @gearboxes_params = request.params[:gearboxes]
+    unless @gearboxes_params.blank?
+      advertisements.where!(:gearbox => { :id => @gearboxes_params })
     end
 
 

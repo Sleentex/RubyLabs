@@ -1,35 +1,23 @@
-<form action="<%= advertisements_index_path %>" method="GET" class="search-form">
-  <select name="city" class="form-select">
-    <option selected>Місто</option>
-    <% City.all.each do |city| %>
-      <option value="<%= city.id %>" <%= request.params[:city] == city.id.to_s ? 'selected' : ''%>><%= city.name %></option>
+<form method="GET" class="search-form">
+
+  <select name="gearboxes" id="gearboxes_select" class="form-select">
+      <option value="">Двигун</option>
+    <% @gearboxes.each do |gearbox| %>
+      <option value="<%= gearbox.id %>"> <%= gearbox.name %></option>
     <% end %>
   </select>
-  <select name="brand" id="brand_select" class="form-select">
-      <option value="">Марка автомобіля</option>
-    <% Brand.all.each do |brand| %>
-      <option value="<%= brand.id %>" <%= request.params[:brand] == brand.id.to_s ? 'selected' : ''%>><%= brand.name %></option>
-    <% end %>
-  </select>
-  <select name="model" id="model_select" class="form-select">
-    <option value="">Модель</option>
-    <% CarModel.where(:brand_id => request.params[:brand]).each do |car_model| %>
-      <option value="<%= car_model.id %>" <%= request.params[:model] == car_model.id.to_s ? 'selected' : ''%>>
-        <%= car_model.name %>
-      </option>
-    <% end %>
-  </select>
-  <input type="text" id="search" value="Search" name="search">
+
+  <input type="text" id="search" placeholder="Search" name="search" value="<%= @search %>">
   <input type="submit" value="Пошук" class="btn btn-info">
 </form>
 
 <ul class="advertisements-list1">
   <% @advertisements.each do |advertisement| %>
     <li class="list-item">
-      <div class="my-advertisement-card">
+      <div class="my-advertisement-card card">
         <img src="<%= advertisement.img_url %>" class="card-img-top advertisement-img" alt="sds">
         <div class="card-body">
-          <h5 class="card-title"><%= advertisement.car_model.brand.name %> <%= advertisement.car_model.name %></h5>
+          <h5 class="card-title"><%= advertisement.name %></h5>
           <div class="info-item">
             <div class="info-logo">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
@@ -58,7 +46,7 @@
               </svg>
             </div>
             <span>Location: &nbsp</span>
-            <span style="font-weight: bold"> <%= advertisement.city.name %> </span>
+            <span style="font-weight: bold"> <%= advertisement.fuel %> <%= advertisement.volume %> <%= advertisement.gearbox.name %></span>
           </div>
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>

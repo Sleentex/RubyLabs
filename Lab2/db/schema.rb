@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_180126) do
+ActiveRecord::Schema.define(version: 2021_11_19_190449) do
 
   create_table "advertisements", force: :cascade do |t|
-    t.integer "car_model_id", null: false
+    t.integer "gearbox_id", null: false
+    t.string "name"
     t.integer "year"
-    t.float "price"
-    t.float "distance"
-    t.integer "city_id", null: false
-    t.boolean "was_in_accident"
+    t.string "price"
+    t.string "distance"
+    t.string "fuel"
+    t.string "volume"
     t.string "img_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["car_model_id"], name: "index_advertisements_on_car_model_id"
-    t.index ["city_id"], name: "index_advertisements_on_city_id"
+    t.index ["gearbox_id"], name: "index_advertisements_on_gearbox_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -46,7 +46,12 @@ ActiveRecord::Schema.define(version: 2021_11_04_180126) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "advertisements", "car_models"
-  add_foreign_key "advertisements", "cities"
+  create_table "gearboxes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "advertisements", "gearboxes"
   add_foreign_key "car_models", "brands"
 end
