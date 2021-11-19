@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car_model: one
+  year: 1
+  price: 1.5
+  distance: 1.5
+  city: one
+  was_in_accident: false
+  img_url: MyString
+
+two:
+  car_model: two
+  year: 1
+  price: 1.5
+  distance: 1.5
+  city: two
+  was_in_accident: false
+  img_url: MyString

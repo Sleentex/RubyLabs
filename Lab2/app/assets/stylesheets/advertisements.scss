@@ -1,0 +1,38 @@
+// Place all the styles related to the advertisements controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.advertisements-list1 {
+  list-style: none;
+  display: flex;
+  width: 1280px;
+  flex-wrap: wrap;
+  margin: 90px auto auto;
+
+  .list-item {
+    margin: 20px 10px;
+    display: block;
+  }
+
+  .my-advertisement-card {
+    width: 18rem;
+
+    .advertisement-img {
+      height: 190px;
+      object-fit: cover;
+      object-position: top
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+
+      .info-logo {
+        display: inline-block;
+        width: 30px;
+      }
+    }
+  }
+}
+
