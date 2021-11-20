@@ -13,7 +13,6 @@ class AdvertisementsController < ApplicationController
       advertisements.where!(:gearbox => { :id => @gearboxes_params })
     end
 
-
     @advertisements = advertisements
   end
 
